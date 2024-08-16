@@ -80,8 +80,9 @@ h1, h2, h3 {
 
 .interactive-image {
     width: 100%; /* Adjust the size as needed */
-    max-width: 150px;
+    max-width: 400px;
     height: auto; /* Maintain aspect ratio */
+    cursor: pointer;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -90,7 +91,27 @@ h1, h2, h3 {
 
 .interactive-image:hover {
     transform: scale(1.05); /* Slightly zooms in the image */
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Lightbox effect */
+.lightbox {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 1000; /* Ensures it appears on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8); /* Dimmed background */
+    justify-content: center;
+    align-items: center;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
 }
 
 .album {
@@ -141,9 +162,24 @@ h1, h2, h3 {
 .music-links a:hover {
     color: #1a237e;
 }
+
+.education-image {
+    width: 400px; /* Set a fixed width for the image */
+    height: auto; /* Maintain the aspect ratio */
+    float: right; /* This floats the image to the right */
+    margin-left: 20px; /* Adds space between the image and the text */
+    margin-bottom: 20px; /* Adds space below the image */
+    border-radius: 10px; /* Optional: Rounds the corners of the image */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Adds a subtle shadow */
+}
 .project h4 {
     color: #3f51b5;
     margin-bottom: 10px;
+}
+
+.no-scroll {
+    overflow: hidden;
+    height: 100%; /* Prevents the body from scrolling */
 }
 
 .project p {
