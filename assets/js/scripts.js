@@ -30,3 +30,15 @@ document.addEventListener('DOMContentLoaded', function() {
 	document.body.classList.remove('no-scroll');
     });
 });
+
+let clickCount = 0;
+const secretText = document.getElementById('key');
+
+secretText.addEventListener('click', () => {
+    clickCount++;
+    
+    if (clickCount > 9) {
+	clickCount == 0;
+        window.location.href = 'button.html'; // Replace with your desired URL
+    }
+});

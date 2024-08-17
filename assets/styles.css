@@ -229,3 +229,7 @@ h1, h2, h3 {
     border-radius: 10px; /* Optional: Add some rounding to the image corners */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: Add a subtle shadow */
 }
+
+.ak {
+cursor: pointer
+}

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Game</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            cursor: pointer;
+        }
+        #emojiDisplay {
+            font-size: 3em;
+            margin: 20px;
+        }
+
+        /* Make inventory visible by default */
+        .inventory {
+            margin-top: 20px;
+            text-align: center;
+            max-height: 300px;
+            overflow-y: auto;
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .crafting {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .recipe-list {
+            margin-bottom: 10px;
+        }
+
+        .crafting button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+@keyframes fall {
+    0% {
+        transform: translateY(0); /* Start at the top of the screen */
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh); /* End at the bottom of the screen */
+        opacity: 0;
+    }
+}
+
+.falling-emoji {
+    position: fixed; /* Make sure the emoji starts from the top of the viewport */
+    top: 0; /* Start at the top */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%);
+    font-size: 3em;
+    animation: fall 2s ease-out forwards;
+    z-index: 1000;
+    pointer-events: none;
+}
+
+    </style>
+</head>
+<body>
+     <div id="navbar"></div>
+<script>
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading navbar:', error));
+</script>
+</div>
+    <div class="container">
+	<div id="fallingEmojiContainer" class="falling-emoji-container"></div>
+        <button id="collectButton">Collect Emoji</button>
+
+        <div id="emojiDisplay"></div>
+
+        <div id="inventory" class="inventory">
+            <h3>Your Emoji Inventory</h3>
+            <div id="inventoryList" class="inventory-list"></div>
+        </div>
+
+        <div id="crafting" class="crafting">
+            <h3>Crafting Recipe</h3>
+            <div id="recipeList" class="recipe-list"></div>
+            <button id="craftButton">Craft</button>
+            <p id="coinCount">Coins: 0</p>
+        </div>
+    </div>
+    <script src="assets/js/button-game.js"></script>
+</body>
+</html>
