@@ -25,35 +25,55 @@ h1, h2, h3 {
 
 .nav {
     background-color: #3f51b5;
-    padding: 15px 20px;
+    padding: 10px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 3px solid #1a237e;
 }
 
-.nav h1 {
-    color: #ffffff;
-    margin: 0;
+.logo img {
+    height: 100px;
+    width: auto;
+    max-height: 100px;
+    cursor: pointer;
 }
 
-.nav a {
-    color: #ffffff;
+.nav-links {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+    margin-left: 20px;
+    background-color: black; /* Add background color */
+    border-radius: 8px; /* Slightly round the corners */
+    padding: 5px; /* Add some internal padding */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+}
+
+.nav-links a {
+    display: flex;
+    align-items: center; /* Vertically align text and icon */
+    justify-content: center; /* Center content horizontally */
+    color: white;
     text-decoration: none;
-    margin-left: 15px;
-    transition: color 0.3s ease;
+    padding: 10px 15px;
+    font-size: 18px; /* Slightly smaller font size */
+    margin: 0 5px; /* Space between links */
+    flex-grow: 1;
+    text-align: center;
+    border-radius: 4px; /* Slightly round the corners */
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-.nav a:hover {
-    color: #bbdefb;
+.nav-links a:hover {
+    background-color: #1a237e; /* Change background color on hover */
+    transform: translateY(-2px); /* Add a slight lift on hover */
 }
 
 .header {
     text-align: center;
     padding: 50px 20px;
-    background-color: #bbdefb;
-    border-radius: 10px 10px 0 0;
-    color: #1a237e;
+    background-color: black;
+    color: white;
 }
 
 .header p {
@@ -184,4 +204,28 @@ h1, h2, h3 {
 
 .project p {
     color: #333;
+}
+
+.content-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 40px;
+}
+
+.text-content {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.image-content {
+    flex: 1;
+    text-align: right; /* Ensure the image aligns to the right */
+}
+
+.image-content img {
+    max-width: 100%; /* Ensure the image scales within its container */
+    height: auto;
+    border-radius: 10px; /* Optional: Add some rounding to the image corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Optional: Add a subtle shadow */
 }

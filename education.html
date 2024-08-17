@@ -7,29 +7,29 @@
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
-    <div class="nav">
-        <div><h1>Wiley Scott</h1></div>
-        <div>
-            <a href="index.html">Home</a>
-            <a href="experience.html">Experience</a>
-            <a href="projects.html">Projects</a>
-            <a href="skills.html">Skills & Languages</a>
-	<a href="music.html">Music</a>
-        </div>
-    </div>
+    <div id="navbar"></div>
+<script>
+    fetch('navbar.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('navbar').innerHTML = data;
+        })
+        .catch(error => console.error('Error loading navbar:', error));
+</script>
+</div>
 
     <div class="container">
         <div class="section">
-            <h2>Education</h2>
+            <h2>Education 🎓</h2>
 		<img src="assets/images/gradcc.jpeg" alt="Education Image" class="education-image">
 
-	      <h3>Washington State University - Actively Attending - BS Mechanical Engineering</h3>
+	      <h3>🎓 Washington State University - Actively Attending - BS Mechanical Engineering</h3>
             <p>Mechanical Design, Engineering Systems</p>
 
-            <h3>Centralia College - Associate of Science - AS, Engineering</h3>
+            <h3>✏️ Centralia College - Associate of Science - AS, Engineering</h3>
             <p>Activities and societies: Community Band, Paid Tutor</p>
 
-            <h3>Onalaska High School - High School Diploma</h3>
+            <h3>🏫 Onalaska High School - High School Diploma</h3>
             <p>Creative Problem Solving, Applied Mathematics</p>
 
 
