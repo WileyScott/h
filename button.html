@@ -6,6 +6,12 @@
     <title>Secret Game</title>
     <link rel="stylesheet" href="assets/styles.css">
     <style>
+        body {
+            overflow: hidden; /* Disable page scrolling */
+            margin: 0;
+            padding: 0;
+        }
+        
         .container {
             display: flex;
             flex-direction: column;
@@ -13,81 +19,119 @@
             justify-content: center;
             height: 100vh;
             text-align: center;
+            position: relative; /* Ensure elements are positioned relative to this container */
         }
+
         button {
             margin: 10px;
             padding: 10px 20px;
             font-size: 1.2em;
             cursor: pointer;
         }
+
         #emojiDisplay {
             font-size: 3em;
             margin: 20px;
         }
 
-        /* Make inventory visible by default */
         .inventory {
-            margin-top: 20px;
-            text-align: center;
-            max-height: 300px;
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            max-height: 50vh;
+	    width: 300px;
             overflow-y: auto;
             padding: 10px;
             border: 1px solid #ccc;
             background-color: #f9f9f9;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	    font-size: 1.2em;
         }
 
         .crafting {
-            margin-top: 20px;
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
         }
 
-        .recipe-list {
-            margin-bottom: 10px;
+        .shop {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            text-align: center;
         }
 
-        .crafting button {
-            padding: 10px 20px;
+        .shop-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+        }
+
+        .shop-item button {
+            padding: 5px 10px;
             cursor: pointer;
         }
 
-@keyframes fall {
-    0% {
-        transform: translateY(0); /* Start at the top of the screen */
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(100vh); /* End at the bottom of the screen */
-        opacity: 0;
-    }
+       .trashcan {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 4.375em; /* Increased from 2.5em to 4.375em for 75% increase */
+    cursor: pointer;
+    z-index: 1001;
 }
 
-.falling-emoji {
-    position: fixed; /* Make sure the emoji starts from the top of the viewport */
-    top: 0; /* Start at the top */
-    left: 50%; /* Center horizontally */
-    transform: translateX(-50%);
-    font-size: 3em;
-    animation: fall 2s ease-out forwards;
-    z-index: 1000;
-    pointer-events: none;
+.trashcan:hover {
+    color: red;
 }
 
+        .pet {
+            position: absolute;
+            cursor: grab;
+            font-size: 3em;
+        }
+
+        .falling-emoji {
+            position: fixed;
+            top: 0;
+            transform: translateX(-50%);
+            font-size: 3em;
+            animation: fall 2s ease-out forwards;
+            z-index: 1000;
+            pointer-events: none;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+        }
+
+.skin-blue {
+    background-color: #3498db;
+    color: white;
+    border: 2px solid #2980b9;
+}
+
+.skin-red {
+    background-color: #e74c3c;
+    color: white;
+    border: 2px solid #c0392b;
+}
     </style>
 </head>
 <body>
-     <div id="navbar"></div>
-<script>
-    fetch('navbar.html')
-        .then(response => response.text())
-        .then(data => {
-            document.getElementById('navbar').innerHTML = data;
-        })
-        .catch(error => console.error('Error loading navbar:', error));
-</script>
-</div>
+    <div id="trashcan" class="trashcan">🗑️</div>
     <div class="container">
-	<div id="fallingEmojiContainer" class="falling-emoji-container"></div>
+        <div id="fallingEmojiContainer" class="falling-emoji-container"></div>
         <button id="collectButton">Collect Emoji</button>
 
         <div id="emojiDisplay"></div>
@@ -102,6 +146,43 @@
             <div id="recipeList" class="recipe-list"></div>
             <button id="craftButton">Craft</button>
             <p id="coinCount">Coins: 0</p>
+        </div>
+    </div>
+
+    <div id="shop" class="shop">
+        <h3>Shop</h3>
+        <div id="shopItems">
+            <div class="shop-item" data-type="pet" data-price="10">
+                <span>🐶</span><a>Dog</a>
+                <button class="buyButton">Buy for 10 💵</button>
+            </div>
+            <div class="shop-item" data-type="pet" data-price="20">
+                <span>🐱</span><a>Cat</a>
+                <button class="buyButton">Buy for 20 💵</button>
+            </div>
+
+	    <div class="shop-item" data-type="button-skin" data-price="30" data-skin-class="skin-blue">
+	        <span>🔵 Blue Button</span>
+   		<button class="buyButton">Buy for 30 💵</button>
+	    </div>
+
+	    <div class="shop-item" data-type="button-skin" data-price="50" data-skin-class="skin-red">
+    		<span>🔴 Red Button</span>
+   		<button class="buyButton">Buy for 50 💵</button>
+	    </div>
+
+            <div class="shop-item" data-type="rare-button" data-price="70">
+                <span>🌟 Rare Button</span>
+                <button class="buyButton">Buy for 70 💵</button>
+            </div>
+
+            <div class="shop-item" data-type="legendary-button" data-price="100">
+                <span>🔥 Legendary Button</span>
+                <button class="buyButton">Buy for 100 💵</button>
+            </div>
+
+
+
         </div>
     </div>
     <script src="assets/js/button-game.js"></script>
